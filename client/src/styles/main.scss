@@ -1,0 +1,9 @@
+@import "./partials/header";
+@import "./partials/home";
+@import "./partials/fitness";
+@import "./partials/about";
+body {
+  width: 100vw;
+  margin: 0 auto;
+  overflow: hidden;
+}

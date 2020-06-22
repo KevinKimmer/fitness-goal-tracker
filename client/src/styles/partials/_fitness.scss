@@ -1,0 +1,23 @@
+.fitness {
+  width: 100vw;
+  justify-content: center;
+  display: flex;
+  &__container {
+    width: 90vw;
+    display: flex;
+    justify-content: space-between;
+    height: 80vh;
+  }
+  &__inputs {
+    display: flex;
+    flex-direction: column;
+    border: 1px solid black;
+    padding: 10px;
+    height: 20vh;
+  }
+  &__graph {
+    border: 1px solid black;
+    width: 40vw;
+    height: 30vh;
+  }
+}

@@ -1,0 +1,11 @@
+.about {
+  width: 100vw;
+  display: flex;
+  justify-content: center;
+  &__container {
+    width: 90vw;
+    &--pic {
+      width: 20vw;
+    }
+  }
+}
