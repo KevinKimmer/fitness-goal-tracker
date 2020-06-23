@@ -1,7 +1,10 @@
 .header {
+  backface-visibility: hidden;
   height: 20vh;
-  background-image: url("../assets/banner.jpeg");
-  background-position: 0 25vh;
+  background-image: url("../assets/banner.jpg");
+  background-position: center;
+  background-size: 200vw;
+  background-repeat: no-repeat;
   display: flex;
   width: 100vw;
   flex-direction: column;
@@ -12,6 +15,11 @@
     justify-content: space-evenly;
     &--tab {
       border: 1px solid grey;
+      background: linear-gradient(
+        120deg,
+        rgba(255, 255, 255, 0.54),
+        rgba(255, 255, 255, 0)
+      );
       text-align: center;
       width: 140px;
       padding: 10px 0;
@@ -20,6 +28,9 @@
     }
     &--link {
       text-decoration: none;
+      &:active {
+        background-color: grey;
+      }
     }
   }
   &__banner {
@@ -31,5 +42,47 @@
     left: 22vw;
     color: white;
     margin: 0;
+  }
+  &__span {
+    display: inline-block;
+    text-shadow: 0 0 0 whitesmoke;
+    animation: odds 2.8s 1s both;
+
+    &--space {
+      width: 8px;
+    }
+    &:nth-child(even) {
+      animation-name: evens;
+    }
+  }
+}
+
+@keyframes odds {
+  0% {
+    transform: translate3d(15rem, -8rem, 0) rotate(-40deg) skewX(70deg)
+      scale(1.5);
+    text-shadow: 0 0 20px whitesmoke;
+    opacity: 0;
+  }
+  60% {
+    text-shadow: 0 0 40px whitesmoke;
+  }
+}
+
+@keyframes evens {
+  0% {
+    transform: translate3d(18rem, -8rem, 0) rotate(-40deg) skewX(-70deg)
+      scale(2);
+    text-shadow: 0 0 20px whitesmoke;
+    opacity: 0;
+  }
+  60% {
+    text-shadow: 0 0 40px whitesmoke;
+  }
+}
+
+@for $item from 1 through 200 {
+  .header__span:nth-of-type(#{$item}) {
+    animation-delay: #{(1 + ($item/75))}s;
   }
 }

@@ -3,21 +3,65 @@
   justify-content: center;
   display: flex;
   &__container {
-    width: 90vw;
-    display: flex;
-    justify-content: space-between;
     height: 80vh;
+    width: 90vw;
+    background-image: url("../assets/fitness.jpg");
+    background-repeat: no-repeat;
+    background-position: center 80%;
+  }
+  &__top {
+    display: flex;
+    flex-direction: column-reverse;
+    justify-content: flex-end;
+    align-items: center;
+    padding-top: 5vh;
+    width: 90vw;
+    background: linear-gradient(
+      120deg,
+      rgba(255, 255, 255, 0.5),
+      rgba(255, 255, 255, 0.1)
+    );
+    height: 75vh;
   }
   &__inputs {
     display: flex;
     flex-direction: column;
-    border: 1px solid black;
+    margin-top: 5vh;
+    align-items: center;
     padding: 10px;
-    height: 20vh;
+    height: fit-content;
+    background-image: linear-gradient(
+      to right,
+      rgba(255, 255, 255, 0.5),
+      rgba(255, 255, 255, 0)
+    );
+    width: 30vw;
+    &--box {
+      margin-bottom: 2vh;
+      padding: 5px 0;
+      width: 20vw;
+    }
+    &--btn {
+      margin-bottom: 2vh;
+      padding: 5px 0;
+      width: 15vw;
+      background-color: grey;
+      color: white;
+      height: 40px;
+      border: none;
+      &:active {
+        background-color: black;
+      }
+    }
   }
-  &__graph {
-    border: 1px solid black;
+  &__instruction {
+    background-image: linear-gradient(
+      to right,
+      rgba(255, 255, 255, 0.5),
+      rgba(255, 255, 255, 0)
+    );
     width: 40vw;
-    height: 30vh;
+    height: fit-content;
+    text-align: center;
   }
 }
