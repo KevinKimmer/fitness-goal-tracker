@@ -1142,7 +1142,7 @@
   display: flex;
 }
 
-.home__container {
+.home__form {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -1150,26 +1150,61 @@
   -webkit-box-direction: normal;
       -ms-flex-direction: column;
           flex-direction: column;
-  border: 1px solid black;
   padding: 50px 10vw;
-  background-color: rgba(100, 100, 100, 0.3);
+  background-image: -webkit-gradient(linear, left top, right top, from(rgba(255, 255, 255, 0.5)), to(rgba(255, 255, 255, 0)));
+  background-image: linear-gradient(to right, rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0));
+}
+
+.home__container {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  width: 100vw;
+  height: 100vh;
+  background: linear-gradient(120deg, rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0.1));
 }
 
 .home__container--id {
   margin: 10px 0;
   padding: 5px 0;
+  border: none;
 }
 
 .home__container--password {
   margin: 10px 0;
   padding: 5px 0;
+  border: none;
 }
 
 .home__container--btn {
   margin: 10px 0;
   padding: 5px 0;
+  background-color: grey;
+  border: none;
+  color: white;
+}
+
+.home__container--btn:active {
   background-color: lightblue;
-  border: 1px solid grey;
+  outline: none;
+}
+
+.home__container--link {
+  text-decoration: none;
+  color: white;
+  display: inline-block;
+  width: 15vw;
+  padding: 10px 0;
+}
+
+.home__container--link:visited, .home__container--link:hover, .home__container--link:focus, .home__container--link:hover, .home__container--link:active {
+  text-decoration: none;
   color: white;
 }
 
@@ -1185,6 +1220,8 @@
 
 .fitness__container {
   height: 80vh;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
   width: 90vw;
   background-image: url("../assets/fitness.jpg");
   background-repeat: no-repeat;
@@ -1238,10 +1275,22 @@
   width: 20vw;
 }
 
+.fitness__inputs--link {
+  text-decoration: none;
+  color: white;
+  display: inline-block;
+  width: 15vw;
+  padding: 10px 0;
+}
+
+.fitness__inputs--link:visited, .fitness__inputs--link:hover, .fitness__inputs--link:focus, .fitness__inputs--link:hover, .fitness__inputs--link:active {
+  text-decoration: none;
+  color: white;
+}
+
 .fitness__inputs--btn {
   margin-bottom: 2vh;
   padding: 5px 0;
-  width: 15vw;
   background-color: grey;
   color: white;
   height: 40px;
@@ -1249,7 +1298,8 @@
 }
 
 .fitness__inputs--btn:active {
-  background-color: black;
+  background-color: lightblue;
+  outline: none;
 }
 
 .fitness__instruction {
@@ -1270,14 +1320,251 @@
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  height: 80vh;
+  background-image: url("../assets/about.jpg");
+  background-repeat: no-repeat;
+  background-size: 70%;
+  background-position: 22vw center;
+  background-color: #f6f6f8;
 }
 
 .about__container {
   width: 90vw;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
 }
 
-.about__container--pic {
+.about__pic {
+  position: relative;
+}
+
+.about__pic::before {
+  border: 2px solid black;
+  position: absolute;
+  content: "";
+  width: 98%;
+  height: 98%;
+  left: 30px;
+  top: 30px;
+}
+
+.about__pic--profile {
   width: 20vw;
+}
+
+.about__description {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  margin-left: 5vw;
+}
+
+.about__description--quote {
+  font-size: 1.6rem;
+  position: relative;
+}
+
+.about__description--author {
+  font-size: 1.2rem;
+  position: relative;
+  left: 13vw;
+}
+
+.contact {
+  width: 100vw;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  background-image: url("../assets/contact.jpg");
+  background-position: center;
+  background-size: 90%;
+  background-repeat: no-repeat;
+}
+
+.contact__container {
+  width: 90vw;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  height: 80vh;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  background: linear-gradient(120deg, rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0.1));
+}
+
+.contact__container--link {
+  text-decoration: none;
+  color: black;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  font-size: 1.3rem;
+}
+
+.contact__container--img {
+  height: 30px;
+}
+
+.contact__container--span {
+  font-weight: bold;
+}
+
+.contact__container--email {
+  font-size: 1.3rem;
+}
+
+.contact__form {
+  width: 30vw;
+  background-image: -webkit-gradient(linear, left top, right top, from(rgba(255, 255, 255, 0.5)), to(rgba(255, 255, 255, 0)));
+  background-image: linear-gradient(to right, rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0));
+  height: 55vh;
+  border: 1px solid black;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+
+.contact__form--header {
+  text-align: center;
+}
+
+.contact__form--label {
+  position: relative;
+  right: 10vw;
+}
+
+.contact__form--email {
+  width: 80%;
+  margin: 20px;
+  height: 30px;
+}
+
+.contact__form--text {
+  height: 25vh;
+  width: 80%;
+  resize: none;
+  margin-bottom: 10px;
+}
+
+.contact__form--btn {
+  margin-bottom: 2vh;
+  padding: 5px 0;
+  width: 15vw;
+  background-color: grey;
+  color: white;
+  height: 40px;
+  border: none;
+}
+
+.contact__form--btn:active {
+  background-color: lightblue;
+  outline: none;
+}
+
+.chart {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  padding-top: 5vh;
+  width: 90vw;
+  background: linear-gradient(120deg, rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0.1));
+  height: 75vh;
+}
+
+.chart__container {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: space-evenly;
+      -ms-flex-pack: space-evenly;
+          justify-content: space-evenly;
+  width: 90vw;
+}
+
+.chart__form {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  width: 25vw;
+  background-image: -webkit-gradient(linear, left top, right top, from(rgba(255, 255, 255, 0.5)), to(rgba(255, 255, 255, 0)));
+  background-image: linear-gradient(to right, rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0));
+}
+
+.chart__form--box {
+  margin-bottom: 7px;
+  padding: 6px 0;
+}
+
+.chart__form--btn {
+  margin-bottom: 2vh;
+  padding: 5px 0;
+  width: 150px;
+  background-color: grey;
+  color: white;
+  height: 40px;
+  border: none;
+}
+
+.chart__form--btn:active {
+  background-color: lightblue;
+  outline: none;
+}
+
+.chart__graph {
+  background-color: rgba(255, 255, 255, 0.8);
+  width: 35vw;
 }
 
 body {

@@ -4,6 +4,7 @@
   display: flex;
   &__container {
     height: 80vh;
+    box-sizing: border-box;
     width: 90vw;
     background-image: url("../assets/fitness.jpg");
     background-repeat: no-repeat;
@@ -41,16 +42,33 @@
       padding: 5px 0;
       width: 20vw;
     }
+    &--link {
+      text-decoration: none;
+      color: white;
+      display: inline-block;
+      width: 15vw;
+      padding: 10px 0;
+
+      &:visited,
+      &:hover,
+      &:focus,
+      &:hover,
+      &:active {
+        text-decoration: none;
+        color: white;
+      }
+    }
     &--btn {
       margin-bottom: 2vh;
       padding: 5px 0;
-      width: 15vw;
+
       background-color: grey;
       color: white;
       height: 40px;
       border: none;
       &:active {
-        background-color: black;
+        background-color: lightblue;
+        outline: none;
       }
     }
   }

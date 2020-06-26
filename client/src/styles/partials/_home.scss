@@ -9,26 +9,63 @@
   background-position: center;
   margin-top: 20px;
   display: flex;
-  &__container {
+  &__form {
     display: flex;
     flex-direction: column;
-    border: 1px solid black;
     padding: 50px 10vw;
-    background-color: rgba(100, 100, 100, 0.3);
+    background-image: linear-gradient(
+      to right,
+      rgba(255, 255, 255, 0.5),
+      rgba(255, 255, 255, 0)
+    );
+  }
+  &__container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100vw;
+    height: 100vh;
+    background: linear-gradient(
+      120deg,
+      rgba(255, 255, 255, 0.5),
+      rgba(255, 255, 255, 0.1)
+    );
     &--id {
       margin: 10px 0;
       padding: 5px 0;
+      border: none;
     }
     &--password {
       margin: 10px 0;
       padding: 5px 0;
+      border: none;
     }
     &--btn {
       margin: 10px 0;
       padding: 5px 0;
-      background-color: lightblue;
-      border: 1px solid grey;
+      background-color: grey;
+      border: none;
       color: white;
+      &:active {
+        background-color: lightblue;
+        outline: none;
+      }
+    }
+    &--link {
+      text-decoration: none;
+      color: white;
+      display: inline-block;
+      width: 15vw;
+      padding: 10px 0;
+
+      &:visited,
+      &:hover,
+      &:focus,
+      &:hover,
+      &:active {
+        text-decoration: none;
+        color: white;
+      }
     }
   }
 }

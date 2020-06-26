@@ -2,10 +2,53 @@
   width: 100vw;
   display: flex;
   justify-content: center;
+  align-items: center;
+  height: 80vh;
+  background-image: url("../assets/about.jpg");
+  background-repeat: no-repeat;
+  background-size: 70%;
+  background-position: 22vw center;
+
+  background-color: rgb(246, 246, 248);
+
   &__container {
     width: 90vw;
-    &--pic {
+    display: flex;
+    justify-content: center;
+  }
+  &__pic {
+    position: relative;
+
+    &::before {
+      border: 2px solid black;
+      position: absolute;
+      content: "";
+      width: 98%;
+      height: 98%;
+      left: 30px;
+      top: 30px;
+    }
+    &--profile {
       width: 20vw;
+    }
+  }
+  &__description {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-left: 5vw;
+
+    &--text {
+    }
+    &--quote {
+      font-size: 1.6rem;
+      position: relative;
+    }
+    &--author {
+      font-size: 1.2rem;
+      position: relative;
+      left: 13vw;
     }
   }
 }

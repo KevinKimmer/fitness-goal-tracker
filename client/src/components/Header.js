@@ -52,7 +52,7 @@ export default class Header extends Component {
 
 function spanThis(prop) {
   let value = [];
-  console.log(prop);
+
   for (let i = 0; i < prop.length; i++) {
     if (prop.charAt(i) == " ") {
       value.push(
@@ -61,6 +61,6 @@ function spanThis(prop) {
     }
     value.push(<span class="header__span">{prop.charAt(i)}</span>);
   }
-  console.log(value);
+
   return value;
 }
