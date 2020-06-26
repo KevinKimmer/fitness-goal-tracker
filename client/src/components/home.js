@@ -14,7 +14,7 @@ export default function Home() {
           />
           <input
             className="home__container--password"
-            type="textarea"
+            type="password"
             name="weight"
             placeholder="password"
           />
