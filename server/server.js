@@ -36,17 +36,23 @@ app
     res.json(newWorkOutList);
   })
   .put((req, res) => {
-    console.log(req);
-    const newWorkOutList = [...workout, req.body];
+    const foundWorkOutIndex = workout.findIndex(
+      (item) => item.id === req.body.id
+    );
+    let newWorkoutList = [...workout];
+    if (foundWorkOutIndex >= 0) {
+      newWorkoutList[foundWorkOutIndex] = req.body;
+    }
+
     const fileName = "./model/workout.json";
     const file = require("./model/workout.json");
 
-    fs.writeFile(fileName, JSON.stringify(newWorkOutList), function writeJSON(
+    fs.writeFile(fileName, JSON.stringify(newWorkoutList), function writeJSON(
       err
     ) {
       if (err) throw err;
     });
-    res.json(newWorkOutList);
+    res.json(newWorkoutList);
   });
 
 //path for 404 error
