@@ -1,8 +1,9 @@
 import React, { Component } from "react";
 import axios from "axios"; //imports axios
 import { Link } from "react-router-dom";
+import { withRouter } from "react-router";
 
-export default class Instructions extends Component {
+class Instructions extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -16,6 +17,7 @@ export default class Instructions extends Component {
 
   onClickButton = (event) => {
     event.preventDefault();
+
     const data = this.state;
     if (data.idnum === "1") {
       data.exercise = "squat";
@@ -54,6 +56,18 @@ export default class Instructions extends Component {
 
     return (
       <div className="fitness__top">
+        <div className="fitness__progress">
+          <h2>Histroy</h2>
+          <Link className="fitness__progress--link" to="./fitness/1">
+            Squat
+          </Link>
+          <Link className="fitness__progress--link" to="./fitness/3">
+            Bench Press
+          </Link>
+          <Link className="fitness__progress--link" to="./fitness/2">
+            Deadlift
+          </Link>
+        </div>
         <form className="fitness__inputs">
           <h2 className="fitness__inputs--header">Goal Calculator</h2>
           <select
@@ -122,16 +136,8 @@ export default class Instructions extends Component {
             5. Click Calculate!
           </p>
         </div>
-        <Link className="fitness__inputs--link" to="./fitness/1">
-          Squat
-        </Link>
-        <Link className="fitness__inputs--link" to="./fitness/3">
-          Bench Press
-        </Link>
-        <Link className="fitness__inputs--link" to="./fitness/2">
-          Deadlift
-        </Link>
       </div>
     );
   }
 }
+export default withRouter(Instructions);

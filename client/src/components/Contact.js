@@ -12,7 +12,7 @@ export default function Contact() {
           <img className="contact__container--img" src={linkedin} /> linkedin
         </a>
         <p className="contact__container--email">
-          <span className="contact__container--span">Email:</span>{" "}
+          <span className="contact__container--span">Email:</span>
           Kim.Kevin224@gmail.com
         </p>
         <form className="contact__form">

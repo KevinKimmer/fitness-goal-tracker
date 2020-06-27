@@ -1,6 +1,8 @@
 import React, { Component } from "react";
 import Charts from "./Charts";
 import Instructions from "./Instructions";
+import { withRouter } from "react-router";
+
 import {
   Route,
   Switch,
@@ -27,16 +29,19 @@ export default class Fitness extends Component {
         <div className="fitness__container">
           <Router>
             <Switch>
-              <Route path="/fitness" exact>
-                <Instructions />
-              </Route>
-              <Route path="/fitness/1" exact>
+              <Route
+                exact
+                path="/fitness"
+                component={withRouter(Instructions)}
+              />
+
+              <Route path="/fitness/1">
                 <Charts exerciseData={0} />
               </Route>
-              <Route path="/fitness/2" exact>
+              <Route path="/fitness/2">
                 <Charts exerciseData={1} />
               </Route>
-              <Route path="/fitness/3" exact>
+              <Route path="/fitness/3">
                 <Charts exerciseData={2} />
               </Route>
             </Switch>

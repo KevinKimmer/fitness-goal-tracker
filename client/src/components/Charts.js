@@ -9,6 +9,8 @@ class Charts extends Component {
       id: 0,
       rep: [0],
       goal: 0,
+      temprep: 0,
+      tempweight: 0,
       weight: [0],
       exercise: "",
       dataGoal: [0],
@@ -19,7 +21,7 @@ class Charts extends Component {
           {
             label: "Trendline",
             type: "line",
-            data: this.weight,
+            data: [0],
 
             borderColor: "#EC932F",
             backgroundColor: "rgba(0,0,0,0)",
@@ -29,9 +31,9 @@ class Charts extends Component {
             pointHoverBorderColor: "#71B37C",
           },
           {
-            label: this.exercise,
+            label: "exercise",
             type: "bar",
-            data: this.weight,
+            data: [0],
 
             backgroundColor: "#71B37C",
             borderColor: "#71B37C",
@@ -41,7 +43,7 @@ class Charts extends Component {
           {
             label: "Goal",
             type: "bar",
-            data: this.dataGoal,
+            data: [0],
 
             backgroundColor: "#red",
             borderColor: "red",
@@ -51,7 +53,7 @@ class Charts extends Component {
           {
             label: "Goal Progression Line",
             type: "line",
-            data: this.dataGoal,
+            data: [0],
 
             borderColor: "red",
             backgroundColor: "rgba(0,0,0,0)",
@@ -73,18 +75,81 @@ class Charts extends Component {
 
   onClickButton = (event) => {
     event.preventDefault();
+    let idNum = this.state.id;
     const data = this.state;
     const workoutData = {
-      rep: [...this.state.rep, Number(data.rep)],
-      weight: [...this.state.weight, Number(data.weight)],
+      rep: [...this.state.rep, Number(data.temprep)],
+      weight: [...this.state.weight, Number(data.tempweight)],
       id: this.state.id,
       goal: this.state.goal,
       exercise: this.state.exercise,
     };
     axios
       .put(`http://localhost:5000/fitness/`, workoutData)
-      .then(function (response) {
-        console.log(response);
+      .then((response) => {
+        console.log(response.data);
+        console.log(idNum);
+        let tempData = response.data[idNum - 1];
+        console.log(tempData);
+        this.setState({
+          id: tempData.id,
+          rep: tempData.rep,
+          goal: tempData.goal,
+          weight: tempData.weight,
+          exercise: tempData.exercise,
+          dataGoal: goalData(tempData),
+          dataDates: chartLength(goalData(tempData)),
+
+          chartData: {
+            labels: chartLength(goalData(tempData)),
+            datasets: [
+              {
+                label: "Trendline",
+                type: "line",
+                data: tempData.weight,
+
+                borderColor: "#EC932F",
+                backgroundColor: "rgba(0,0,0,0)",
+                pointBorderColor: "#EC932F",
+                pointBackgroundColor: "#EC932F",
+                pointHoverBackgroundColor: "#71B37C",
+                pointHoverBorderColor: "#71B37C",
+              },
+              {
+                label: tempData.exercise,
+                type: "bar",
+                data: tempData.weight,
+
+                backgroundColor: "#71B37C",
+                borderColor: "#71B37C",
+                hoverBackgroundColor: "#71B37C",
+                hoverBorderColor: "#71B37C",
+              },
+              {
+                label: "Goal",
+                type: "bar",
+                data: goalData(tempData),
+
+                backgroundColor: "#red",
+                borderColor: "red",
+                hoverBackgroundColor: "red",
+                hoverBorderColor: "red",
+              },
+              {
+                label: "Goal Progression Line",
+                type: "line",
+                data: goalData(tempData),
+
+                borderColor: "red",
+                backgroundColor: "rgba(0,0,0,0)",
+                pointBorderColor: "red",
+                pointBackgroundColor: "red",
+                pointHoverBackgroundColor: "red",
+                pointHoverBorderColor: "red",
+              },
+            ],
+          },
+        });
       });
   };
 
@@ -97,7 +162,6 @@ class Charts extends Component {
 
   componentDidMount() {
     axios.get(`http://localhost:5000/fitness/`).then((response) => {
-      console.log(this.props.exerciseData);
       let tempData = response.data[this.props.exerciseData];
       this.setState({
         id: tempData.id,
@@ -106,15 +170,64 @@ class Charts extends Component {
         weight: tempData.weight,
         exercise: tempData.exercise,
         dataGoal: goalData(tempData),
-        dataDates: chartLength(this.state.dataDates),
+        dataDates: chartLength(goalData(tempData)),
+
+        chartData: {
+          labels: chartLength(goalData(tempData)),
+          datasets: [
+            {
+              label: "Trendline",
+              type: "line",
+              data: tempData.weight,
+
+              borderColor: "#EC932F",
+              backgroundColor: "rgba(0,0,0,0)",
+              pointBorderColor: "#EC932F",
+              pointBackgroundColor: "#EC932F",
+              pointHoverBackgroundColor: "#71B37C",
+              pointHoverBorderColor: "#71B37C",
+            },
+            {
+              label: tempData.exercise,
+              type: "bar",
+              data: tempData.weight,
+
+              backgroundColor: "#71B37C",
+              borderColor: "#71B37C",
+              hoverBackgroundColor: "#71B37C",
+              hoverBorderColor: "#71B37C",
+            },
+            {
+              label: "Goal",
+              type: "bar",
+              data: goalData(tempData),
+
+              backgroundColor: "#red",
+              borderColor: "red",
+              hoverBackgroundColor: "red",
+              hoverBorderColor: "red",
+            },
+            {
+              label: "Goal Progression Line",
+              type: "line",
+              data: goalData(tempData),
+
+              borderColor: "red",
+              backgroundColor: "rgba(0,0,0,0)",
+              pointBorderColor: "red",
+              pointBackgroundColor: "red",
+              pointHoverBackgroundColor: "red",
+              pointHoverBorderColor: "red",
+            },
+          ],
+        },
       });
-      console.log(this.state.dataGoal);
     });
   }
 
   render() {
-    const { rep } = this.state;
-    const { weight } = this.state;
+    const { temprep } = this.state;
+    const { tempweight } = this.state;
 
     return (
       <div className="chart">
@@ -126,7 +239,7 @@ class Charts extends Component {
               className="chart__form--box"
               type="number"
               min="1"
-              name="rep"
+              name="temprep"
               placeholder="Repetitions"
               onChange={this.inputChange}
             />
@@ -134,7 +247,7 @@ class Charts extends Component {
               className="chart__form--box"
               type="number"
               min="1"
-              name="weight"
+              name="tempweight"
               placeholder="Current Weight (lbs)"
               onChange={this.inputChange}
             />
