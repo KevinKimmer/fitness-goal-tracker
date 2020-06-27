@@ -30,14 +30,14 @@ export default class Fitness extends Component {
               <Route path="/fitness" exact>
                 <Instructions />
               </Route>
-              <Route path="/fitness/1">
-                <Charts squatData={this.state.workoutData[0]} />
+              <Route path="/fitness/1" exact>
+                <Charts exerciseData={0} />
               </Route>
-              <Route path="/fitness/2">
-                <Charts deadlifttData={this.state.workoutData[1]} />
+              <Route path="/fitness/2" exact>
+                <Charts exerciseData={1} />
               </Route>
-              <Route path="/fitness/3">
-                <Charts benchpressData={this.state.workoutData[2]} />
+              <Route path="/fitness/3" exact>
+                <Charts exerciseData={2} />
               </Route>
             </Switch>
           </Router>

@@ -17,7 +17,6 @@ export default class Instructions extends Component {
   onClickButton = (event) => {
     event.preventDefault();
     const data = this.state;
-    console.log(data.idnum);
     if (data.idnum === "1") {
       data.exercise = "squat";
     } else if (data.idnum === "2") {
@@ -26,10 +25,10 @@ export default class Instructions extends Component {
       data.exercise = "benchpress";
     }
     const workoutData = {
-      id: data.idnum,
-      reps: [data.rep],
-      goals: data.goal,
-      weight: [data.weight],
+      id: Number(data.idnum),
+      rep: [Number(data.rep)],
+      goal: Number(data.goal),
+      weight: [Number(data.weight)],
       exercise: data.exercise,
     };
     console.log(workoutData);
@@ -100,9 +99,9 @@ export default class Instructions extends Component {
             type="submit"
             onClick={this.onClickButton}
           >
-            {/* <Link className="fitness__inputs--link" to={`./fitness/${idnum}`}> */}
-            Calculate
-            {/* </Link> */}
+            <Link className="fitness__inputs--link" to={`./fitness/${idnum}`}>
+              Calculate
+            </Link>
           </button>
         </form>
         <div className="fitness__instruction">
@@ -123,13 +122,13 @@ export default class Instructions extends Component {
             5. Click Calculate!
           </p>
         </div>
-        <Link className="fitness__inputs--link" to="./1">
+        <Link className="fitness__inputs--link" to="./fitness/1">
           Squat
         </Link>
-        <Link className="fitness__inputs--link" to="./3">
+        <Link className="fitness__inputs--link" to="./fitness/3">
           Bench Press
         </Link>
-        <Link className="fitness__inputs--link" to="./2">
+        <Link className="fitness__inputs--link" to="./fitness/2">
           Deadlift
         </Link>
       </div>

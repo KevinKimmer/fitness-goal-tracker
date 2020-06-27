@@ -1,27 +1,25 @@
 import { Bar } from "react-chartjs-2";
-
+import axios from "axios"; //imports axios
 import React, { Component } from "react";
-import Axios from "axios"; //imports axios
 
 class Charts extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      weight: 0,
+      id: 0,
+      rep: [0],
       goal: 0,
-      rep: 0,
+      weight: [0],
       exercise: "",
-    };
-
-    this.state = {
-      dataPt: [10],
+      dataGoal: [0],
+      dataDates: [0],
       chartData: {
-        labels: [1, 2, 3, 4, 5, 6, 7, 8, 9],
+        labels: this.dataDates,
         datasets: [
           {
             label: "Trendline",
             type: "line",
-            data: this.state.dataPt,
+            data: this.weight,
 
             borderColor: "#EC932F",
             backgroundColor: "rgba(0,0,0,0)",
@@ -31,9 +29,9 @@ class Charts extends Component {
             pointHoverBorderColor: "#71B37C",
           },
           {
-            label: "Sqaut",
+            label: this.exercise,
             type: "bar",
-            data: this.state.dataPt,
+            data: this.weight,
 
             backgroundColor: "#71B37C",
             borderColor: "#71B37C",
@@ -43,7 +41,7 @@ class Charts extends Component {
           {
             label: "Goal",
             type: "bar",
-            data: [10, 15, 20, 25, 30, 35, 40, 45, 50],
+            data: this.dataGoal,
 
             backgroundColor: "#red",
             borderColor: "red",
@@ -53,7 +51,7 @@ class Charts extends Component {
           {
             label: "Goal Progression Line",
             type: "line",
-            data: [10, 15, 20, 25, 30, 35, 40, 45, 50],
+            data: this.dataGoal,
 
             borderColor: "red",
             backgroundColor: "rgba(0,0,0,0)",
@@ -77,19 +75,17 @@ class Charts extends Component {
     event.preventDefault();
     const data = this.state;
     const workoutData = {
-      id: `${Date.now()}`,
-      //workout: data.exercise,
-      reps: data.rep,
-      goals: data.weight,
+      rep: [...this.state.rep, Number(data.rep)],
+      weight: [...this.state.weight, Number(data.weight)],
+      id: this.state.id,
+      goal: this.state.goal,
+      exercise: this.state.exercise,
     };
-    // Axios.post(`http://localhost:5000/videos`, workoutData).then(function (
-    //   response
-    // ) {
-    console.log(workoutData);
-    //});
-    this.setState({
-      dataPt: [...this.state.dataPt, data.weight],
-    });
+    axios
+      .put(`http://localhost:5000/fitness/`, workoutData)
+      .then(function (response) {
+        console.log(response);
+      });
   };
 
   inputChange = (event) => {
@@ -99,23 +95,30 @@ class Charts extends Component {
     });
   };
 
-  componentDidUpdate(prevProps, prevState) {
-    if (prevState.dataPt === this.state.dataPt) {
-    } else {
+  componentDidMount() {
+    axios.get(`http://localhost:5000/fitness/`).then((response) => {
+      console.log(this.props.exerciseData);
+      let tempData = response.data[this.props.exerciseData];
       this.setState({
-        goal: 10,
+        id: tempData.id,
+        rep: tempData.rep,
+        goal: tempData.goal,
+        weight: tempData.weight,
+        exercise: tempData.exercise,
+        dataGoal: goalData(tempData),
+        dataDates: chartLength(this.state.dataDates),
       });
-    }
+      console.log(this.state.dataGoal);
+    });
   }
 
   render() {
     const { rep } = this.state;
     const { weight } = this.state;
-    const { exercise } = this.state;
 
     return (
       <div className="chart">
-        <h2 className="chart__title">Squat</h2>
+        <h2 className="chart__title">{this.state.exercise.toUpperCase()}</h2>
         <div className="chart__container">
           <form className="chart__form">
             <h2 className="chart__form--header">Goal Calculator</h2>
@@ -187,3 +190,20 @@ class Charts extends Component {
   }
 }
 export default Charts;
+
+function goalData(data) {
+  let progress = [];
+  for (let i = data.weight[0]; i <= data.goal + 2; i += 3) {
+    progress.push(i);
+  }
+
+  return progress;
+}
+function chartLength(data) {
+  let progress = [];
+  for (let i = 0; i <= data.length; i++) {
+    progress.push(i);
+  }
+
+  return progress;
+}
