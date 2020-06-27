@@ -19,7 +19,7 @@ app.get("/", (req, res) => {
 
 //chaining routes for /videos route to get, post, and put data
 app
-  .route("/fitness")
+  .route("/fitness/")
   .get((req, res) => {
     res.json(getWorkOut());
   })

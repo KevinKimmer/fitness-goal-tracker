@@ -112,7 +112,7 @@ class Charts extends Component {
     const { rep } = this.state;
     const { weight } = this.state;
     const { exercise } = this.state;
-    console.log(this.state.dataPt);
+
     return (
       <div className="chart">
         <h2 className="chart__title">Squat</h2>

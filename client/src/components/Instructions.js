@@ -1,14 +1,15 @@
 import React, { Component } from "react";
-import Axios from "axios"; //imports axios
+import axios from "axios"; //imports axios
 import { Link } from "react-router-dom";
 
 export default class Instructions extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      weight: 0,
+      id: 0,
+      weight: [],
       goal: 0,
-      rep: 0,
+      rep: [],
       exercise: "",
     };
   }
@@ -16,18 +17,27 @@ export default class Instructions extends Component {
   onClickButton = (event) => {
     event.preventDefault();
     const data = this.state;
+    console.log(data.idnum);
+    if (data.idnum === "1") {
+      data.exercise = "squat";
+    } else if (data.idnum === "2") {
+      data.exercise = "deadlift";
+    } else {
+      data.exercise = "benchpress";
+    }
     const workoutData = {
-      id: `${Date.now()}`,
-      workout: data.exercise,
-      reps: data.rep,
+      id: data.idnum,
+      reps: [data.rep],
       goals: data.goal,
-      weight: data.weight,
+      weight: [data.weight],
+      exercise: data.exercise,
     };
-    // Axios.post(`http://localhost:5000/videos`, workoutData).then(function (
-    //   response
-    // ) {
     console.log(workoutData);
-    //});
+    axios
+      .put(`http://localhost:5000/fitness/`, workoutData)
+      .then(function (response) {
+        console.log(response);
+      });
   };
 
   inputChange = (event) => {
@@ -38,24 +48,28 @@ export default class Instructions extends Component {
   };
 
   render() {
+    const { idnum } = this.state;
     const { weight } = this.state;
     const { goal } = this.state;
     const { rep } = this.state;
-    const { exercise } = this.state;
+
     return (
       <div className="fitness__top">
         <form className="fitness__inputs">
           <h2 className="fitness__inputs--header">Goal Calculator</h2>
           <select
             className="fitness__inputs--box"
-            name="exercise"
+            name="idnum"
             onChange={this.inputChange}
           >
-            <option value="squat">Exercise</option>
-            <option value="squat">Squat</option>
-            <option value="squat">Deadlift</option>
-            <option value="squat">Bench Press</option>
+            <option value="" disabled selected>
+              Exercise
+            </option>
+            <option value="1">Squat</option>
+            <option value="2">Deadlift</option>
+            <option value="3">Bench Press</option>
           </select>
+
           <input
             className="fitness__inputs--box"
             type="number"
@@ -86,9 +100,9 @@ export default class Instructions extends Component {
             type="submit"
             onClick={this.onClickButton}
           >
-            <Link className="fitness__inputs--link" to="./fitness/placeholder">
-              Calculate
-            </Link>
+            {/* <Link className="fitness__inputs--link" to={`./fitness/${idnum}`}> */}
+            Calculate
+            {/* </Link> */}
           </button>
         </form>
         <div className="fitness__instruction">
@@ -109,6 +123,15 @@ export default class Instructions extends Component {
             5. Click Calculate!
           </p>
         </div>
+        <Link className="fitness__inputs--link" to="./1">
+          Squat
+        </Link>
+        <Link className="fitness__inputs--link" to="./3">
+          Bench Press
+        </Link>
+        <Link className="fitness__inputs--link" to="./2">
+          Deadlift
+        </Link>
       </div>
     );
   }

@@ -26,7 +26,7 @@ export default class Header extends Component {
     return (
       <div className="header">
         <div className="header__container">
-          <Link to="/fitness" className="header__container--link">
+          <Link to="/fitness" exact className="header__container--link">
             <p className="header__container--tab">Fitness Goals</p>
           </Link>
           <Link to="/about" className="header__container--link">

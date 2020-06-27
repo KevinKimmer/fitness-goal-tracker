@@ -1,1 +1,5 @@
-[{"id":1,"exercise":"squat","weight":[10],"rep":[10],"goal":0},{"id":2,"exercise":"deadlift","weight":[],"rep":[],"goal":""},{"id":3,"exercise":"benchpress","weight":[],"rep":[],"goal":""}]
+[
+  { "id": 1, "reps": [], "goals": 0, "weight": [], "exercise": "squat" },
+  { "id": 2, "exercise": "deadlift", "weight": [], "rep": [], "goal": 0 },
+  { "id": 3, "exercise": "benchpress", "weight": [], "rep": [], "goal": 0 }
+]
